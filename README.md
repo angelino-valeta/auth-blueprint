@@ -16,3 +16,28 @@ Um backend robusto, seguro e escalável construído com Node.js, TypeScript, Pos
 - **Automações**: Migrations com TypeORM para gerenciamento do banco de dados.
 - **Monitoramento**: Health check básico (expansível com Prometheus).
 - **Containerização**: Docker Compose para deploy consistente.
+
+## 🛠️ Tecnologias
+
+- **Node.js**: v18
+- **TypeScript**: v5
+- **Express**: Framework web
+- **PostgreSQL**: Banco relacional
+- **Redis**: Cache e gerenciamento de sessões
+- **TypeORM**: ORM e migrations
+- **JWT**: Autenticação com RS256
+- **Winston**: Logging
+- **Docker**: Containerização
+
+## 📋 Pré-requisitos
+
+- [Node.js](https://nodejs.org/) (v18 ou superior)
+- [Docker](https://www.docker.com/) e [Docker Compose](https://docs.docker.com/compose/)
+- [OpenSSL](https://www.openssl.org/) (para gerar chaves RSA)
+
+## 🚀 Como Rodar
+
+### 1. Clonar o Repositório
+```bash
+git clone https://github.com/seu-usuario/authblueprint.git
+cd authblueprint
