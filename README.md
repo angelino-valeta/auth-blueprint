@@ -37,7 +37,6 @@ Um backend robusto, seguro e escalável construído com Node.js, TypeScript, Pos
 
 ## 🚀 Como Rodar
 
-### 1. Clonar o Repositório
 ```bash
 git clone https://github.com/angelino-valeta/auth-blueprint.git
 cd authblueprint 
