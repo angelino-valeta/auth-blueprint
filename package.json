@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "tsc",
-    "dev": "ts-node-env --respawn src/index.ts",
+    "dev": "ts-node-dev --respawn src/index.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:run": "npm run typeorm migration:run -- -d src/config/database.ts",
     "test": "jest"
