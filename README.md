@@ -39,5 +39,12 @@ Um backend robusto, seguro e escalável construído com Node.js, TypeScript, Pos
 
 ### 1. Clonar o Repositório
 ```bash
-git clone https://github.com/seu-usuario/authblueprint.git
-cd authblueprint
+git clone https://github.com/angelino-valeta/auth-blueprint.git
+cd authblueprint 
+mkdir keys
+openssl genrsa -out keys/private.pem 2048
+openssl rsa -in keys/private.pem -pubout -out keys/public.pem
+cp .env.example .env
+npm install
+docker-compose up --build
+npm run typeorm migration:run
