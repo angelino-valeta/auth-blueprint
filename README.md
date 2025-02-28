@@ -2,7 +2,7 @@
 ![Node.js](https://img.shields.io/badge/Node.js-v18-green) ![TypeScript](https://img.shields.io/badge/TypeScript-v5-blue) ![Docker](https://img.shields.io/badge/Docker-Compose-blue) ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 
-Um backend avançado, seguro e escalável com Node.js, TypeScript, PostgreSQL, Redis e Docker. Inclui autenticação JWT com Max Retry/Jail, RBAC, logs distribuídos, event sourcing, integração com sistemas externos, envio de emails, cron jobs, notificações, cache avançado, rate limiting por usuário, auditoria e filas de mensagens.
+Um backend avançado, seguro e escalável com Node.js, TypeScript, PostgreSQL, Redis e Docker, estruturado por módulos e baseado em Domain-Driven Design (DDD). Inclui autenticação JWT com Max Retry/Jail, RBAC, logs distribuídos, event sourcing, integração com sistemas externos, envio de emails, cron jobs, notificações, cache avançado, rate limiting por usuário, auditoria e filas de mensagens.
 
 
 ## ✨ Funcionalidades
@@ -12,7 +12,7 @@ Um backend avançado, seguro e escalável com Node.js, TypeScript, PostgreSQL, R
 - **Autorização (RBAC)**: Roles configuráveis.
 - **Logs Distribuídos**: Winston com tracing via OpenTelemetry.
 - **Event Sourcing**: Registro de eventos para auditoria.
-- **Escalabilidade**: Stateless com JWT, Redis, cache avançado.
+- **Escalabilidade**: Stateless com JWT, Redis, cache avançado, rotas dinâmicas.
 - **Automações**: Migrations com TypeORM, cron jobs.
 - **Monitoramento**: Health check robusto.
 - **Integração**: Sistemas externos via HTTP.
