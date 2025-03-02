@@ -8,7 +8,19 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@config/*": ["config/*"],
+      "@modules/*": ["modules/*"],
+      "@monitoring/*": ["modules/monitoring/*"],
+      "@notification/*": ["modules/notification/*"],
+      "@shared/*": ["modules/shared/*"],
+      "@infrastructure/*": ["infrastructure/*"],
+      "@middleware/*": ["middleware/*"],
+      "@utils/*": ["utils/*"],
+      "@types/*": ["types/*"],
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
