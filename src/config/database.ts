@@ -1,6 +1,9 @@
 import { DataSource } from 'typeorm'
 import * as dotenv from 'dotenv'
 
+dotenv.config()
+
+if (!process.env.DB_HOST) throw new Error('DB_HOST não configurado no .env');
 const isTsNode = process.env.TS_NODE === 'true'
 
 export const AppDataSource = new DataSource({
