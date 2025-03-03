@@ -1,21 +1,26 @@
-# AuthBlueprint
-
+# BackendBlueprint
 ![Node.js](https://img.shields.io/badge/Node.js-v18-green) ![TypeScript](https://img.shields.io/badge/TypeScript-v5-blue) ![Docker](https://img.shields.io/badge/Docker-Compose-blue) ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 
-Um backend robusto, seguro e escalável construído com Node.js, TypeScript, PostgreSQL, Redis e Docker. Projetado como um blueprint reutilizável para qualquer aplicação que precise de autenticação JWT, gerenciamento de roles (RBAC), logs estruturados, e suporte a milhões de requisições. Inclui boas práticas de segurança, automação de banco de dados, e uma arquitetura modular para fácil expansão.
+Um backend avançado, seguro e escalável com Node.js, TypeScript, PostgreSQL, Redis e Docker, estruturado por módulos e baseado em Domain-Driven Design (DDD). Inclui autenticação JWT com Max Retry/Jail, RBAC, logs distribuídos, event sourcing, integração com sistemas externos, envio de emails, cron jobs, notificações, cache avançado, rate limiting por usuário, auditoria e filas de mensagens.
 
 
 ## ✨ Funcionalidades
 
-- **Autenticação JWT**: Tokens de acesso (15min) e refresh tokens (7 dias) com algoritmo RS256.
-- **Segurança**: Criptografia AES-256 para dados sensíveis, rate limiting, headers seguros (Helmet), e validação de entrada (Zod).
-- **Autorização (RBAC)**: Sistema de roles com permissões configuráveis.
-- **Logs Estruturados**: Integração com Winston para logs em console e arquivos.
-- **Escalabilidade**: Design stateless com Redis para cache e revogação de tokens.
-- **Automações**: Migrations com TypeORM para gerenciamento do banco de dados.
-- **Monitoramento**: Health check básico (expansível com Prometheus).
-- **Containerização**: Docker Compose para deploy consistente.
+- **Autenticação JWT**: Tokens de acesso (15min) e refresh (7 dias) com RS256, Max Retry/Jail (5 tentativas, 15min bloqueio).
+- **Segurança**: AES-256, rate limiting (IP e usuário), Helmet, Zod.
+- **Autorização (RBAC)**: Roles configuráveis.
+- **Logs Distribuídos**: Winston com tracing via OpenTelemetry.
+- **Event Sourcing**: Registro de eventos para auditoria.
+- **Escalabilidade**: Stateless com JWT, Redis, cache avançado, rotas dinâmicas.
+- **Automações**: Migrations com TypeORM, cron jobs.
+- **Monitoramento**: Health check robusto.
+- **Integração**: Sistemas externos via HTTP.
+- **Email**: Envio e filas com Nodemailer.
+- **Notificações**: WebSocket com broadcast.
+- **Cache**: Gerenciamento avançado com Redis.
+- **Auditoria**: Registro de ações sensíveis.
+- **Filas**: Processamento assíncrono com Bull.
 
 ## 🛠️ Tecnologias
 
@@ -23,11 +28,17 @@ Um backend robusto, seguro e escalável construído com Node.js, TypeScript, Pos
 - **TypeScript**: v5
 - **Express**: Framework web
 - **PostgreSQL**: Banco relacional
-- **Redis**: Cache e gerenciamento de sessões
+- **Redis**: Cache e sessões
 - **TypeORM**: ORM e migrations
 - **JWT**: Autenticação com RS256
 - **Winston**: Logging
+- **OpenTelemetry**: Tracing
+- **Nodemailer**: Email
+- **Node-cron**: Cron jobs
+- **WebSocket**: Notificações
+- **Bull**: Filas
 - **Docker**: Containerização
+- **Extras**: bcryptjs, express-rate-limit, helmet, zod, axios, ws
 
 ## 📋 Pré-requisitos
 
@@ -39,7 +50,7 @@ Um backend robusto, seguro e escalável construído com Node.js, TypeScript, Pos
 
 ```bash
 git clone https://github.com/angelino-valeta/auth-blueprint.git
-cd authblueprint 
+cd backendblueprint 
 mkdir keys
 openssl genrsa -out keys/private.pem 2048
 openssl rsa -in keys/private.pem -pubout -out keys/public.pem

@@ -1,0 +1,45 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: "0.0.0.0:4318"  # Recebe traces, métricas e logs via OTLP/HTTP
+
+exporters:
+  logging:
+    loglevel: debug  # Para depuração
+  prometheus:
+    endpoint: "0.0.0.0:8889"  # Porta para o Prometheus scrapear métricas
+    send_timestamps: true     # Inclui timestamps nas métricas
+  jaeger:
+    endpoint: "jaeger:14250"  # Exporta traces para o Jaeger
+    tls:
+      insecure: true          # Sem TLS para simplificar (ajuste em produção)
+  loki:
+    endpoint: "http://loki:3100/loki/api/v1/push"  # Envia logs ao Loki
+    labels: # Etiquetas para organizar os logs
+      job: "otel-collector"
+      service: "{service.name}"  # Pega dinamicamente o nome do serviço
+
+processors:
+  batch:                      # Agrupa dados antes de enviar
+    timeout: 1s
+    send_batch_size: 1000
+  memory_limiter:             # Limita uso de memória
+    check_interval: 1s
+    limit_mib: 400            # Limite de 400 MiB
+    spike_limit_mib: 100      # Limite para picos
+
+service:
+  pipelines:
+    traces:                   # Pipeline para traces
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [jaeger, logging]
+    metrics:                  # Pipeline para métricas
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [prometheus, logging]
+    logs:                     # Pipeline para logs
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [loki, logging]    # Apenas logging por enquanto

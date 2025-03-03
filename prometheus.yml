@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "otel-collector"
+    static_configs:
+      - targets: ["otel-collector:8889"]
+  - job_name: "cadvisor"
+    static_configs:
+      - targets: ["cadvisor:8080"]  # Métricas dos containers
+  - job_name: "portainer"
+    static_configs:
+      - targets: ["portainer:9000"]  # Métricas do Portainer (se ativado)
