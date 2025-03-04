@@ -32,7 +32,7 @@ Um backend avançado, seguro e escalável com Node.js, TypeScript, PostgreSQL, R
 - **TypeORM**: ORM e migrations
 - **JWT**: Autenticação com RS256
 - **Winston**: Logging
-- **OpenTelemetry**: Tracing
+- **OpenTelemetry**: Logs, Metrics, Tracing
 - **Nodemailer**: Email
 - **Node-cron**: Cron jobs
 - **WebSocket**: Notificações
