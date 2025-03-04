@@ -15,7 +15,7 @@ export class User {
   @Column({ unique: true, nullable: true })
   email?: string
 
-  @Column()
+  @Column({ default: false})
   isDeleted!: boolean
 
   @ManyToOne(() => Role)
