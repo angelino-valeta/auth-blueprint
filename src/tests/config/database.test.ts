@@ -1,32 +1,37 @@
-import { getAppDataSource } from '../../config/database';
-import { User } from '../../infrastructure/entities/User';
+import { getAppDataSource } from "@config/database";
+import { User } from "@infrastructure/entities/User";
+import { DataSource } from "typeorm";
 
-async function testDatabase() {
-  console.log('Testando nova configuração do banco...');
-  try {
-    const dataSource = await getAppDataSource();
-    console.log('DataSource obtido com sucesso!');
+describe('Database configuration', () => {
 
-    const userRepo = dataSource.getRepository(User);
-    const testUser = new User();
-    testUser.username = 'testuser';
-    testUser.email = 'test@example.com';
-    testUser.password = 'hashedpassword';
-    await userRepo.save(testUser);
-    console.log('Usuário inserido:', testUser);
+  let dataSource: DataSource
 
-    const savedUser = await userRepo.findOneBy({ email: 'test@example.com' });
-    if (savedUser) {
-      console.log('Usuário recuperado:', savedUser);
-    } else {
-      throw new Error('Falha ao recuperar usuário');
+  beforeAll(async () => {
+    dataSource = await getAppDataSource()
+  })
+
+  afterAll(async () => {
+    if(dataSource && dataSource.isInitialized){
+      dataSource.destroy()
     }
+  })
 
-    await userRepo.delete({ email: 'test@example.com' });
-    console.log('Usuário removido.');
-  } catch (error) {
-    console.error('Erro no teste:', error);
-  }
-}
+  it('should connect to the database and perform CRUD operations', async () => {
+    expect(dataSource).toBeDefined()
+    expect(dataSource.isInitialized).toBe(true)
 
-testDatabase();
+    const userRepo = dataSource.getRepository(User)
+    const testUser = new User()
+    testUser.username = 'testdatabaseuser'
+    testUser.email = 'testdatabaseuser@example.com'
+    testUser.password = 'hashedpassword'
+    await userRepo.save(testUser)
+    const savedUser = await userRepo.findOneBy({ email: 'testdatabaseuser@example.com' })
+    expect(savedUser).not.toBeNull()
+    expect(savedUser?.username).toBe('testdatabaseuser')
+
+    await userRepo.delete({ email: 'testdatabaseuser@example.com' })
+    const deletedUser = await userRepo.findOneBy({ email: 'testdatabaseuser@example.com' })
+    expect(deletedUser).toBeNull()
+  })
+})

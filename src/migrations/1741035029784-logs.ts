@@ -10,7 +10,7 @@ export class Logs1741035029784 implements MigrationInterface {
                 { name: 'level', type: 'varchar' },
                 { name: 'message', type: 'text' },
                 { name: 'timestamp', type: 'varchar' },
-                { name: 'trace_id', type: 'varchar', isNullable: true  }
+                { name: 'trace_id', type: 'integer', }
             ]
         }))
     }
