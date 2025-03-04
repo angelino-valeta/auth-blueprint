@@ -11,7 +11,7 @@ export class Events1741035582902 implements MigrationInterface {
                 { name: 'payload', type: 'jsonb' },
                 { name: 'timestamp', type: 'varchar' },
                 { name: 'userId', type: 'integer', isNullable: true },
-                { name: 'traceId', type: 'varchar', isNullable: true },
+                { name: 'traceId', type: 'integer' },
             ],
         }));
     }

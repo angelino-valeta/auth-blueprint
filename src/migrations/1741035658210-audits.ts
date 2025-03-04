@@ -11,7 +11,7 @@ export class Audits1741035658210 implements MigrationInterface {
                 { name: 'userId', type: 'integer', isNullable: true },
                 { name: 'details', type: 'jsonb' },
                 { name: 'timestamp', type: 'varchar' },
-                { name: 'traceId', type: 'varchar', isNullable: true },
+                { name: 'traceId', type: 'integer' },
             ],
         }));
     }
