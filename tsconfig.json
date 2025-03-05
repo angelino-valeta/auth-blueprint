@@ -19,9 +19,9 @@
       "@infrastructure/*": ["infrastructure/*"],
       "@middleware/*": ["middleware/*"],
       "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"],
+      "@types/*": ["types/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "tests"],
   "exclude": ["node_modules"]
 }
