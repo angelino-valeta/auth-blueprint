@@ -1,12 +1,28 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
-  transformIgnorePatterns: ['/node_modules/'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-
+  testMatch: ['<rootDir>/tests/**/*.(test|spec).ts'],
+  moduleFileExtensions: ['ts', 'js', 'json', 'node'],
   moduleNameMapper: {
-    '^@config/(.*)$': '<rootDir>/src/config/$1',
+    '^@modules/(.*)$': '<rootDir>/src/modules/$1',
     '^@infrastructure/(.*)$': '<rootDir>/src/infrastructure/$1',
+    '^@config/(.*)$': '<rootDir>/src/config/$1',
+    '^@middleware/(.*)$': '<rootDir>/src/middleware/$1',
+    '^@utils/(.*)$': '<rootDir>/src/utils/$1',
   },
-}
+  setupFilesAfterEnv: ['<rootDir>/tests/setup/globalSetup.ts'],
+  clearMocks: true,
+  collectCoverage: true,
+  coverageDirectory: '<rootDir>/coverage',
+  coveragePathIgnorePatterns: [
+    '/src/config/',
+    '/src/migrations/',
+    '/src/types/',
+    '/src/bootstrap/',
+    '/src/index.ts',
+    '/src/infrastructure/entities/',
+    '/src/infrastructure/integrations/httpClient.ts',
+    '/src/infrastructure/repositories/baseRepository.ts',
+  ],
+  transformIgnorePatterns: ['/node_modules/'],
+};
